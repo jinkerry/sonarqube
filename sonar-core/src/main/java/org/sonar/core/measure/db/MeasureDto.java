@@ -35,7 +35,7 @@ public class MeasureDto {
   private Long id;
   private Double value;
   private String textValue;
-  private byte[] measureData;
+  private byte[] dataValue;
   private Integer tendency;
   private Double variation1, variation2, variation3, variation4, variation5;
   private String alertStatus;
@@ -75,8 +75,8 @@ public class MeasureDto {
 
   @CheckForNull
   public String getData() {
-    if (measureData != null) {
-      return new String(measureData, Charsets.UTF_8);
+    if (dataValue != null) {
+      return new String(dataValue, Charsets.UTF_8);
     }
     return textValue;
   }
@@ -84,13 +84,13 @@ public class MeasureDto {
   public MeasureDto setData(String data) {
     if (data == null) {
       this.textValue = null;
-      this.measureData = null;
+      this.dataValue = null;
     } else if (data.length() > MAX_TEXT_VALUE_LENGTH) {
       this.textValue = null;
-      this.measureData = data.getBytes(Charsets.UTF_8);
+      this.dataValue = data.getBytes(Charsets.UTF_8);
     } else {
       this.textValue = data;
-      this.measureData = null;
+      this.dataValue = null;
     }
 
     return this;

@@ -8,7 +8,7 @@
     pm.snapshot_id as snapshotId,
     pm.value as value,
     pm.text_value as textValue,
-    pm.measure_data as data,
+    pm.measure_data as dataValue,
     pm.variation_value_1 as variation1,
     pm.variation_value_2 as variation2,
     pm.variation_value_3 as variation3,
@@ -79,7 +79,7 @@
     #{projectId, jdbcType=INTEGER}, #{alertStatus, jdbcType=VARCHAR}, #{alertText, jdbcType=VARCHAR},
     #{description, jdbcType=VARCHAR}, #{severityIndex, jdbcType=INTEGER}, #{characteristicId, jdbcType=INTEGER},
     #{variation1, jdbcType=DOUBLE}, #{variation2, jdbcType=DOUBLE}, #{variation3, jdbcType=DOUBLE},
-    #{variation4, jdbcType=DOUBLE}, #{variation5, jdbcType=DOUBLE}, #{measureData, jdbcType=BINARY}
+    #{variation4, jdbcType=DOUBLE}, #{variation5, jdbcType=DOUBLE}, #{dataValue, jdbcType=BINARY}
     )
   </insert>
 
