@@ -138,24 +138,24 @@ public class MeasureDaoTest {
     db.prepareDbUnit(getClass(), "empty.xml");
 
     sut.insert(session, new MeasureDto()
-        .setSnapshotId(2L)
-        .setMetricId(3)
-        .setCharacteristicId(4)
-        .setRuleId(5)
-        .setComponentId(6L)
-        .setValue(2.5)
-        .setData("measure-value")
-        .setTendency(42)
-        .setSeverity(Severity.INFO)
-        .setVariation(1, 1.1d)
-        .setVariation(2, 2.2d)
-        .setVariation(3, 3.3)
-        .setVariation(4, 4.4)
-        .setVariation(5, 5.5)
-        .setAlertStatus("alert")
-        .setAlertText("alert-text")
-        .setDescription("measure-description")
-    );
+      .setSnapshotId(2L)
+      .setMetricId(3)
+      .setCharacteristicId(4)
+      .setRuleId(5)
+      .setComponentId(6L)
+      .setValue(2.0d)
+      .setData("measure-value")
+      .setTendency(42)
+      .setSeverity(Severity.INFO)
+      .setVariation(1, 1.0d)
+      .setVariation(2, 2.0d)
+      .setVariation(3, 3.0d)
+      .setVariation(4, 4.0d)
+      .setVariation(5, 5.0d)
+      .setAlertStatus("alert")
+      .setAlertText("alert-text")
+      .setDescription("measure-description")
+      );
     session.commit();
 
     db.assertDbUnit(getClass(), "insert-result.xml", "project_measures");
