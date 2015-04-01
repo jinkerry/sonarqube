@@ -146,6 +146,7 @@ import org.sonar.server.permission.PermissionFinder;
 import org.sonar.server.permission.ws.PermissionsWs;
 import org.sonar.server.platform.monitoring.*;
 import org.sonar.server.platform.ruby.PlatformRackBridge;
+import org.sonar.server.platform.ruby.PlatformRubyBridge;
 import org.sonar.server.platform.ws.*;
 import org.sonar.server.plugins.*;
 import org.sonar.server.properties.ProjectSettingsFactory;
@@ -321,6 +322,9 @@ class ServerComponents {
     return Lists.<Object>newArrayList(
       DefaultServerUpgradeStatus.class,
       DatabaseMigrator.class,
+
+      // depends on Ruby
+      PlatformRubyBridge.class,
 
       // plugins
       ServerPluginJarsInstaller.class,
