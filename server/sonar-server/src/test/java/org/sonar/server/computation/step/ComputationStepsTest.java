@@ -47,7 +47,7 @@ public class ComputationStepsTest {
       mock(PersistMeasuresStep.class),
       mock(PersistEventsStep.class),
       mock(PersistDuplicationMeasuresStep.class),
-      mock(ComputeAndPersistDaysSinceLastCommitStep.class)
+      mock(PersistNumberOfDaysSinceLastCommitStep.class)
       );
 
     assertThat(registry.orderedSteps()).hasSize(16);

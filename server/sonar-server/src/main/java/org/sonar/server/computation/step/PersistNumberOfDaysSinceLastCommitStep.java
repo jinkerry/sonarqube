@@ -37,7 +37,7 @@ import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkState;
 
-public class ComputeAndPersistDaysSinceLastCommitStep implements ComputationStep {
+public class PersistNumberOfDaysSinceLastCommitStep implements ComputationStep {
 
   private static final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24L;
 
@@ -48,7 +48,7 @@ public class ComputeAndPersistDaysSinceLastCommitStep implements ComputationStep
 
   private long lastCommitTimestamp = 0L;
 
-  public ComputeAndPersistDaysSinceLastCommitStep(System2 system, DbClient dbClient, SourceLineIndex sourceLineIndex, MetricCache metricCache) {
+  public PersistNumberOfDaysSinceLastCommitStep(System2 system, DbClient dbClient, SourceLineIndex sourceLineIndex, MetricCache metricCache) {
     this.dbClient = dbClient;
     this.sourceLineIndex = sourceLineIndex;
     this.metricCache = metricCache;

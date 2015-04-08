@@ -120,6 +120,7 @@ public class SourceLineIndex extends BaseIndex {
       .setSize(1)
       .setQuery(QueryBuilders.boolQuery()
         .must(QueryBuilders.termQuery(SourceLineIndexDefinition.FIELD_PROJECT_UUID, projectUuid)))
+      .setFetchSource(new String[]{SourceLineIndexDefinition.FIELD_SCM_DATE}, null)
       .addSort(SourceLineIndexDefinition.FIELD_SCM_DATE, SortOrder.DESC);
 
     SearchHit[] result = request.get().getHits().getHits();

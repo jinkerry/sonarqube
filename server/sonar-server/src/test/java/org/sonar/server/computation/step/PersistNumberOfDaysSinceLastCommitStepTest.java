@@ -31,9 +31,9 @@ import org.sonar.batch.protocol.Constants;
 import org.sonar.batch.protocol.output.BatchReport;
 import org.sonar.batch.protocol.output.BatchReportReader;
 import org.sonar.batch.protocol.output.BatchReportWriter;
-import org.sonar.core.component.ComponentDto;
 import org.sonar.core.measure.db.MetricDto;
 import org.sonar.core.persistence.DbTester;
+import org.sonar.server.component.ComponentTesting;
 import org.sonar.server.computation.ComputationContext;
 import org.sonar.server.computation.measure.MetricCache;
 import org.sonar.server.db.DbClient;
@@ -48,7 +48,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ComputeAndPersistDaysSinceLastCommitStepTest extends BaseStepTest {
+public class PersistNumberOfDaysSinceLastCommitStepTest extends BaseStepTest {
 
   @ClassRule
   public static DbTester db = new DbTester();
@@ -56,7 +56,7 @@ public class ComputeAndPersistDaysSinceLastCommitStepTest extends BaseStepTest {
   public TemporaryFolder temp = new TemporaryFolder();
   File dir;
 
-  ComputeAndPersistDaysSinceLastCommitStep sut;
+  PersistNumberOfDaysSinceLastCommitStep sut;
 
   DbClient dbClient;
   SourceLineIndex sourceLineIndex;
@@ -71,7 +71,7 @@ public class ComputeAndPersistDaysSinceLastCommitStepTest extends BaseStepTest {
     dir = temp.newFolder();
     db.truncateTables();
 
-    sut = new ComputeAndPersistDaysSinceLastCommitStep(System2.INSTANCE, dbClient, sourceLineIndex, metricCache);
+    sut = new PersistNumberOfDaysSinceLastCommitStep(System2.INSTANCE, dbClient, sourceLineIndex, metricCache);
   }
 
   @Override
@@ -92,7 +92,7 @@ public class ComputeAndPersistDaysSinceLastCommitStepTest extends BaseStepTest {
         )
         .build()
       );
-    ComputationContext context = new ComputationContext(new BatchReportReader(dir), new ComponentDto().setId(456_789L).setUuid("project-uuid"));
+    ComputationContext context = new ComputationContext(new BatchReportReader(dir), ComponentTesting.newProjectDto("project-uuid"));
 
     sut.execute(context);
 
@@ -104,7 +104,7 @@ public class ComputeAndPersistDaysSinceLastCommitStepTest extends BaseStepTest {
     Date sixDaysAgo = DateUtils.addDays(new Date(), -6);
     when(sourceLineIndex.lastCommitedDateOnProject("project-uuid")).thenReturn(sixDaysAgo);
     initReportWithProjectAndFile();
-    ComputationContext context = new ComputationContext(new BatchReportReader(dir), new ComponentDto().setId(456_789L).setUuid("project-uuid"));
+    ComputationContext context = new ComputationContext(new BatchReportReader(dir), ComponentTesting.newProjectDto("project-uuid"));
 
     sut.execute(context);
 
