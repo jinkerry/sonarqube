@@ -56,7 +56,7 @@ public class MeasureDto {
     return id;
   }
 
-  public MeasureDto setId(Long id) {
+  public MeasureDto setId(@Nullable Long id) {
     this.id = id;
     return this;
   }
@@ -169,7 +169,7 @@ public class MeasureDto {
     return componentId;
   }
 
-  public MeasureDto setComponentId(Long componentId) {
+  public MeasureDto setComponentId(@Nullable Long componentId) {
     this.componentId = componentId;
     return this;
   }
